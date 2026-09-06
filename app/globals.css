@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* referenced by tailwind.config.ts fontFamily.display / fontFamily.sans */
+  --font-newsreader: "Newsreader", Georgia, serif;
+  --font-grotesk: "Space Grotesk", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #14171a;
+  color: #efeae0;
+}
+
+::selection {
+  background: #a9673a;
+  color: #14171a;
+}
+
+/* visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #c97d48;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
