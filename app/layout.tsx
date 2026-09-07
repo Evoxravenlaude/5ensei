@@ -5,11 +5,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import Loader from "@/components/Loader";
 
 export const metadata: Metadata = {
-  title: "5ensei — a studio for the five senses",
-  description:
-    "5ensei is a fragrance atelier organized by sense: smell, touch and sound. Formulas blended to order, named for the raw material at their center.",
+  title: "5ENSEI — Presence Before Introduction",
+  description: "5ensei is a Nigerian fragrance house. Presence before introduction.",
 };
 
 export default function RootLayout({
@@ -23,12 +23,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="font-sans antialiased">
         <CartProvider>
+          <Loader />
           <AnnouncementBar />
           <Header />
           <main>{children}</main>

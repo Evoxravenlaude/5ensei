@@ -12,11 +12,8 @@ import {
 import { getProduct } from "./products";
 
 export interface CartLine {
-  id: string; // slug + size + personalization, unique key
   slug: string;
-  sizeLabel: string;
   qty: number;
-  personalization?: string;
 }
 
 interface CartContextValue {
@@ -24,12 +21,11 @@ interface CartContextValue {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (slug: string, sizeLabel: string, personalization?: string) => void;
-  updateQty: (id: string, qty: number) => void;
-  removeItem: (id: string) => void;
+  addItem: (slug: string) => void;
+  updateQty: (slug: string, qty: number) => void;
+  removeItem: (slug: string) => void;
   count: number;
   subtotal: number;
-  lastAdded: string | null;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -39,9 +35,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const [lastAdded, setLastAdded] = useState<string | null>(null);
 
-  // hydrate from localStorage once, client-side only
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -62,34 +56,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [lines, hydrated]);
 
-  const addItem = useCallback(
-    (slug: string, sizeLabel: string, personalization?: string) => {
-      const id = `${slug}__${sizeLabel}__${personalization ?? ""}`;
-      setLines((prev) => {
-        const existing = prev.find((l) => l.id === id);
-        if (existing) {
-          return prev.map((l) =>
-            l.id === id ? { ...l, qty: l.qty + 1 } : l
-          );
-        }
-        return [...prev, { id, slug, sizeLabel, qty: 1, personalization }];
-      });
-      setLastAdded(id);
-      setIsOpen(true);
-    },
-    []
-  );
+  const addItem = useCallback((slug: string) => {
+    setLines((prev) => {
+      const existing = prev.find((l) => l.slug === slug);
+      if (existing) {
+        return prev.map((l) => (l.slug === slug ? { ...l, qty: l.qty + 1 } : l));
+      }
+      return [...prev, { slug, qty: 1 }];
+    });
+    setIsOpen(true);
+  }, []);
 
-  const updateQty = useCallback((id: string, qty: number) => {
+  const updateQty = useCallback((slug: string, qty: number) => {
     setLines((prev) =>
-      qty <= 0
-        ? prev.filter((l) => l.id !== id)
-        : prev.map((l) => (l.id === id ? { ...l, qty } : l))
+      qty <= 0 ? prev.filter((l) => l.slug !== slug) : prev.map((l) => (l.slug === slug ? { ...l, qty } : l))
     );
   }, []);
 
-  const removeItem = useCallback((id: string) => {
-    setLines((prev) => prev.filter((l) => l.id !== id));
+  const removeItem = useCallback((slug: string) => {
+    setLines((prev) => prev.filter((l) => l.slug !== slug));
   }, []);
 
   const { count, subtotal } = useMemo(() => {
@@ -97,9 +82,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     let subtotal = 0;
     for (const line of lines) {
       const product = getProduct(line.slug);
-      const size = product?.sizes.find((s) => s.label === line.sizeLabel);
       count += line.qty;
-      subtotal += (size?.price ?? 0) * line.qty;
+      subtotal += (product?.price ?? 0) * line.qty;
     }
     return { count, subtotal };
   }, [lines]);
@@ -114,7 +98,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     removeItem,
     count,
     subtotal,
-    lastAdded,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

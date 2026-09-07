@@ -1,155 +1,108 @@
 "use client";
 
 import { useState } from "react";
-import { Product } from "@/lib/products";
+import Image from "next/image";
+import Link from "next/link";
+import { Product, money } from "@/lib/products";
 import { useCart } from "@/lib/cart-context";
-import VesselArt from "./VesselArt";
+import ComingSoonGlyph from "./VesselArt";
 
-const NOTE_ROWS: { key: "top" | "heart" | "base"; label: string }[] = [
-  { key: "top", label: "Top" },
-  { key: "heart", label: "Heart" },
-  { key: "base", label: "Base" },
+const TABS: { key: "scent" | "bottle" | "delivery"; label: string }[] = [
+  { key: "scent", label: "The scent" },
+  { key: "bottle", label: "The bottle" },
+  { key: "delivery", label: "Delivery" },
 ];
 
 export default function ProductDetail({ product }: { product: Product }) {
   const { addItem } = useCart();
-  const [sizeIdx, setSizeIdx] = useState(0);
-  const [personalization, setPersonalization] = useState("");
-  const [openPanel, setOpenPanel] = useState<string | null>("story");
+  const [activeTab, setActiveTab] = useState<"scent" | "bottle" | "delivery">("scent");
   const [justAdded, setJustAdded] = useState(false);
-
-  const size = product.sizes[sizeIdx];
+  const available = product.status === "available";
 
   function handleAdd() {
-    addItem(product.slug, size.label, personalization.trim() || undefined);
+    if (!available) return;
+    addItem(product.slug);
     setJustAdded(true);
-    setTimeout(() => setJustAdded(false), 1800);
-  }
-
-  function togglePanel(key: string) {
-    setOpenPanel((cur) => (cur === key ? null : key));
+    window.setTimeout(() => setJustAdded(false), 1800);
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 grid md:grid-cols-2 gap-12">
-      {/* Visual */}
-      <div className="md:sticky md:top-24 md:self-start flex items-center justify-center border border-line bg-ink-soft py-16">
-        <VesselArt
-          format={product.format}
-          tint={product.tint}
-          code={product.code}
-          className="h-80 sm:h-[420px] w-auto text-smoke"
-        />
+    <div className="mx-auto max-w-7xl px-5 sm:px-10 py-14 grid md:grid-cols-2 gap-12">
+      <div className="md:sticky md:top-24 md:self-start flex items-center justify-center border border-line bg-gradient-to-b from-paper-deep to-paper py-16">
+        {available ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={340}
+            height={420}
+            className="h-72 sm:h-[420px] w-auto object-contain drop-shadow-[0_26px_32px_rgba(23,19,16,0.2)]"
+          />
+        ) : (
+          <ComingSoonGlyph className="h-40 w-auto text-rust opacity-30" />
+        )}
       </div>
 
-      {/* Details */}
       <div>
-        <p className="text-xs uppercase tracking-widest2 text-copper-bright mb-3">
-          {product.format} — {product.sense}
+        <p className="text-[11px] font-mono font-bold uppercase tracking-widest2 text-rust mb-3">
+          {available ? "Now available" : "In development"}
         </p>
-        <h1 className="font-display text-3xl sm:text-4xl text-bone mb-2">{product.name}</h1>
-        <p className="text-bone/70 mb-8">{product.tagline}</p>
+        <h1 className="font-display font-bold italic text-3xl sm:text-4xl text-ink mb-2">
+          {product.name}
+        </h1>
+        <p className="font-mono font-bold text-sm text-rust mb-6">
+          {money(product.price, product.currency)} &middot; {product.sizeLabel}
+        </p>
+        {product.description && (
+          <p className="text-ink/72 leading-relaxed max-w-[46ch] mb-6">{product.description}</p>
+        )}
 
-        {/* Size selector */}
-        <div className="mb-6">
-          <p className="text-xs uppercase tracking-widest2 text-smoke mb-3">Size</p>
-          <div className="flex flex-wrap gap-2">
-            {product.sizes.map((s, i) => (
-              <button
-                key={s.label}
-                onClick={() => setSizeIdx(i)}
-                className={`px-4 py-2 text-sm border transition-colors ${
-                  i === sizeIdx
-                    ? "border-copper text-bone bg-copper/10"
-                    : "border-line text-bone/70 hover:border-smoke"
-                }`}
-              >
-                {s.label} · ${s.price}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Personalization */}
-        {product.personalizable && (
-          <div className="mb-8">
-            <label htmlFor="personalize" className="text-xs uppercase tracking-widest2 text-smoke mb-3 block">
-              Personalize the label (optional)
-            </label>
-            <input
-              id="personalize"
-              type="text"
-              maxLength={40}
-              value={personalization}
-              onChange={(e) => setPersonalization(e.target.value)}
-              placeholder="For: You"
-              className="w-full bg-transparent border border-line px-4 py-3 text-sm text-bone placeholder:text-smoke focus:outline-none focus:border-copper-bright"
-            />
-            <p className="text-xs text-smoke mt-2">
-              Stamped under the batch date. Leave blank and we'll label it “For: You.”
+        {available && product.tabs.scent && (
+          <div className="border-t border-line">
+            <div className="flex gap-6 pt-4">
+              {TABS.map((t) => (
+                <button
+                  key={t.key}
+                  onClick={() => setActiveTab(t.key)}
+                  className={`font-mono font-bold text-[11px] uppercase tracking-widest2 pb-3 border-b-2 transition-colors ${
+                    activeTab === t.key
+                      ? "text-ink border-rust"
+                      : "text-ink/40 border-transparent hover:text-ink/70"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+            <p className="pt-5 text-sm text-ink/70 leading-relaxed max-w-[48ch]">
+              {product.tabs[activeTab]}
             </p>
           </div>
         )}
 
-        <button
-          onClick={handleAdd}
-          className="w-full sm:w-auto bg-copper hover:bg-copper-bright transition-colors text-bone text-sm tracking-wide px-8 py-3.5"
-        >
-          {justAdded ? "Added to bag ✓" : `Add to bag — $${size.price}`}
-        </button>
-
-        {/* Notes breakdown */}
-        <div className="mt-12 border-t border-line pt-8">
-          <p className="text-xs uppercase tracking-widest2 text-smoke mb-5">Composition</p>
-          <div className="space-y-4">
-            {NOTE_ROWS.map((row, i) => (
-              <div key={row.key} className="grid grid-cols-[70px_1fr] gap-4 items-start">
-                <span className="text-xs text-smoke pt-0.5">{row.label}</span>
-                <div>
-                  <p className="text-sm text-bone/90">{product.notes[row.key].join(" · ")}</p>
-                  <div className="mt-1.5 h-1 bg-line">
-                    <div
-                      className="h-1 bg-copper"
-                      style={{ width: `${100 - i * 25}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Accordions */}
-        <div className="mt-10 border-t border-line">
-          {[
-            { key: "story", label: "The story", body: product.description },
-            {
-              key: "shipping",
-              label: "Shipping & returns",
-              body: "Ships within 2 business days. Personalized items are made to order and are final sale; unpersonalized items may be returned within 30 days in original condition.",
-            },
-            {
-              key: "refill",
-              label: "Refill program",
-              body: "Bring this vessel back to any 5ensei counter for a 20% refill discount, or mail it back using the prepaid label in your original order.",
-            },
-          ].map((panel) => (
-            <div key={panel.key} className="border-b border-line">
+        <div className="mt-8 pt-6 border-t border-line flex flex-col sm:flex-row gap-3">
+          {available ? (
+            <>
               <button
-                onClick={() => togglePanel(panel.key)}
-                className="w-full flex items-center justify-between py-4 text-left text-sm text-bone"
-                aria-expanded={openPanel === panel.key}
+                onClick={handleAdd}
+                className="bg-ink hover:bg-rust transition-colors text-paper text-sm font-bold uppercase tracking-wide px-7 py-3.5"
               >
-                {panel.label}
-                <span className="text-smoke">{openPanel === panel.key ? "−" : "+"}</span>
+                {justAdded ? "Added \u2713" : "Add to bag"}
               </button>
-              {openPanel === panel.key && (
-                <p className="pb-5 text-sm text-bone/70 leading-relaxed max-w-lg">
-                  {panel.body}
-                </p>
-              )}
-            </div>
-          ))}
+              <a
+                href="https://wa.me/2348034900874"
+                className="border border-ink text-ink text-sm font-bold uppercase tracking-wide px-7 py-3.5 text-center hover:bg-ink hover:text-paper transition-colors"
+              >
+                Order on WhatsApp
+              </a>
+            </>
+          ) : (
+            <Link
+              href="/contact"
+              className="bg-ink hover:bg-rust transition-colors text-paper text-sm font-bold uppercase tracking-wide px-7 py-3.5 text-center"
+            >
+              Get notified
+            </Link>
+          )}
         </div>
       </div>
     </div>

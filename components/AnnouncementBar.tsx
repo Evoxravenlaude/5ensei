@@ -1,28 +1,27 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
-const MESSAGES = [
-  "Complimentary standard shipping on orders over $75.",
-  "Every fragrance is blended and labeled at the moment of order.",
-  "Refill your vessel: bring any 5ensei bottle or jar back for 20% off.",
-];
+import Image from "next/image";
 
 export default function AnnouncementBar() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % MESSAGES.length);
-    }, 5000);
-    return () => clearInterval(id);
-  }, []);
+  const items = Array(6).fill("Presence before introduction");
 
   return (
-    <div className="bg-graphite text-bone text-center text-[11px] sm:text-xs py-2 px-4 tracking-wide">
-      <span key={index} className="animate-rise-in inline-block">
-        {MESSAGES[index]}
-      </span>
+    <div className="bg-rust text-paper overflow-hidden whitespace-nowrap relative flex items-center gap-3.5 pl-4">
+      <Image
+        src="/logo-mark.png"
+        alt=""
+        width={40}
+        height={70}
+        className="h-[13px] w-auto shrink-0 brightness-0 invert opacity-90 animate-floaty-sm"
+      />
+      <div className="inline-flex animate-marquee py-2">
+        {items.concat(items).map((text, i) => (
+          <span
+            key={i}
+            className="font-mono font-bold text-[11.5px] tracking-[0.2em] px-11 text-paper/90"
+          >
+            {text}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

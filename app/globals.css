@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  /* referenced by tailwind.config.ts fontFamily.display / fontFamily.sans */
-  --font-newsreader: "Newsreader", Georgia, serif;
-  --font-grotesk: "Space Grotesk", Helvetica, Arial, sans-serif;
+  /* referenced by tailwind.config.ts fontFamily.display / fontFamily.sans / fontFamily.mono */
+  --font-archivo: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-courier-prime: "Courier Prime", "Courier New", monospace;
 }
 
 html {
@@ -13,19 +13,23 @@ html {
 }
 
 body {
-  background-color: #14171a;
-  color: #efeae0;
+  background-color: #fbf8f1;
+  color: #171310;
 }
 
 ::selection {
-  background: #a9673a;
-  color: #14171a;
+  background: #a6421f;
+  color: #fbf8f1;
 }
 
-/* visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid #c97d48;
+  outline: 2px solid #b7924a;
   outline-offset: 2px;
+}
+
+body.loading {
+  overflow: hidden;
+  height: 100vh;
 }
 
 @media (prefers-reduced-motion: reduce) {

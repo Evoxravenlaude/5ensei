@@ -1,90 +1,87 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { SENSE_LABEL, SENSE_COPY, products, Sense } from "@/lib/products";
-import VesselArt from "./VesselArt";
+import { products } from "@/lib/products";
 
-const SENSES: Sense[] = ["smell", "touch", "sound"];
+const NAV_LINKS = [
+  { href: "/philosophy", label: "Philosophy" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function MegaMenu() {
-  const [open, setOpen] = useState<Sense | null>(null);
-  const featured = products.find((p) => p.sense === (open ?? "smell") && p.featured) ??
-    products.find((p) => p.sense === (open ?? "smell"));
+  const [open, setOpen] = useState(false);
+  const featured = products.find((p) => p.status === "available");
 
   return (
-    <nav
-      className="relative hidden md:flex items-center gap-8"
-      onMouseLeave={() => setOpen(null)}
-    >
-      {SENSES.map((sense) => (
-        <div key={sense} onMouseEnter={() => setOpen(sense)}>
-          <Link
-            href={`/collections/${sense}`}
-            className={`text-sm tracking-wide py-2 border-b transition-colors ${
-              open === sense
-                ? "border-copper text-bone"
-                : "border-transparent text-bone/80 hover:text-bone"
-            }`}
-          >
-            {SENSE_LABEL[sense]}
-          </Link>
-        </div>
+    <nav className="relative hidden md:flex items-center gap-8" onMouseLeave={() => setOpen(false)}>
+      <div onMouseEnter={() => setOpen(true)}>
+        <Link
+          href="/collection"
+          className={`text-sm font-semibold uppercase tracking-wide py-2 border-b-2 transition-colors ${
+            open ? "border-ink text-ink" : "border-transparent text-ink/80 hover:text-ink"
+          }`}
+        >
+          Collection
+        </Link>
+      </div>
+      {NAV_LINKS.map((l) => (
+        <Link
+          key={l.href}
+          href={l.href}
+          className="text-sm font-semibold uppercase tracking-wide py-2 text-ink/80 hover:text-ink border-b-2 border-transparent"
+        >
+          {l.label}
+        </Link>
       ))}
-      <Link
-        href="/about"
-        className="text-sm tracking-wide py-2 text-bone/80 hover:text-bone border-b border-transparent"
-      >
-        About
-      </Link>
 
       {open && (
         <div
-          className="absolute left-1/2 top-full z-40 w-[720px] -translate-x-1/2 border border-line bg-ink shadow-2xl"
-          onMouseEnter={() => setOpen(open)}
+          className="absolute left-1/2 top-full z-40 w-[560px] -translate-x-1/2 border border-line bg-paper shadow-2xl"
+          onMouseEnter={() => setOpen(true)}
         >
-          <div className="grid grid-cols-[1.3fr_1fr]">
+          <div className="grid grid-cols-[1.2fr_1fr]">
             <div className="p-8">
-              <p className="text-xs uppercase tracking-widest2 text-smoke mb-3">
-                {SENSE_LABEL[open]}
+              <p className="text-[11px] font-mono font-bold uppercase tracking-widest2 text-rust mb-4">
+                The collection
               </p>
-              <p className="font-display text-lg text-bone/90 leading-snug max-w-sm mb-6">
-                {SENSE_COPY[open]}
-              </p>
-              <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
-                {products
-                  .filter((p) => p.sense === open)
-                  .map((p) => (
-                    <li key={p.slug}>
-                      <Link
-                        href={`/products/${p.slug}`}
-                        className="text-sm text-bone/80 hover:text-copper-bright transition-colors"
-                      >
-                        {p.name}
-                      </Link>
-                    </li>
-                  ))}
+              <ul className="space-y-2">
+                {products.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={`/products/${p.slug}`}
+                      className="text-sm text-ink/80 hover:text-rust transition-colors"
+                    >
+                      {p.name}
+                      {p.status !== "available" && (
+                        <span className="text-ink/40 text-xs ml-2">(coming soon)</span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <Link
-                href={`/collections/${open}`}
-                className="inline-block mt-6 text-xs uppercase tracking-widest2 text-copper-bright hover:text-bone transition-colors"
+                href="/collection"
+                className="inline-block mt-6 text-[11px] font-mono font-bold uppercase tracking-widest2 text-rust hover:text-ink transition-colors"
               >
-                View all {SENSE_LABEL[open].toLowerCase()}
+                View full collection
               </Link>
             </div>
             {featured && (
               <Link
                 href={`/products/${featured.slug}`}
-                className="border-l border-line p-8 flex flex-col items-center justify-center bg-ink-soft hover:bg-graphite/40 transition-colors"
+                className="border-l border-line p-8 flex flex-col items-center justify-center bg-paper-deep hover:bg-paper-deep/70 transition-colors"
               >
-                <VesselArt
-                  format={featured.format}
-                  tint={featured.tint}
-                  code={featured.code}
-                  className="h-40 w-24 text-smoke"
+                <Image
+                  src={featured.image}
+                  alt={featured.name}
+                  width={200}
+                  height={260}
+                  className="h-32 w-auto"
                 />
-                <p className="mt-4 text-sm text-bone">{featured.name}</p>
-                <p className="text-xs text-smoke">{featured.tagline}</p>
+                <p className="mt-4 text-sm text-ink font-semibold">{featured.name}</p>
+                <p className="text-xs text-ink/50">{featured.sizeLabel}</p>
               </Link>
             )}
           </div>
