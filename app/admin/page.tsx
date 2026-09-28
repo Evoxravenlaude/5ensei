@@ -129,6 +129,7 @@ export default function AdminPage() {
       image: product.image,
       description: product.description,
       tabs: product.tabs,
+      ...(product.notes && product.notes.length ? { notes: product.notes } : {}),
     };
     const idx = products.findIndex((p) => p.slug === clean.slug);
     const next = idx >= 0 ? products.map((p, i) => (i === idx ? clean : p)) : [...products, clean];
@@ -350,6 +351,11 @@ export default function AdminPage() {
               label="Size / label"
               value={editing.sizeLabel}
               onChange={(v) => setEditing({ ...editing, sizeLabel: v })}
+            />
+            <FieldText
+              label="Notes (comma separated, e.g. soft cream, marshmallow, musk)"
+              value={(editing.notes || []).join(", ")}
+              onChange={(v) => setEditing({ ...editing, notes: v.split(",").map((n) => n.trim()).filter(Boolean) })}
             />
             <FieldArea
               label="Short description"

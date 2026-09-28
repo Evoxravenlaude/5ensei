@@ -8,6 +8,7 @@ import { useCart, LabelPersonalization } from "@/lib/cart-context";
 import { whatsappProductLink } from "@/lib/whatsapp";
 import ComingSoonGlyph from "./VesselArt";
 import LabelComposer from "./LabelComposer";
+import NotesFilm from "./NotesFilm";
 
 const TABS: { key: "scent" | "bottle" | "delivery"; label: string }[] = [
   { key: "scent", label: "The scent" },
@@ -58,6 +59,9 @@ export default function ProductDetail({ product }: { product: Product }) {
           {product.sizeLabel}
           {available && <span className="ml-3 text-ink">{money(product.price, product.currency)}</span>}
         </p>
+        {product.notes && product.notes.length > 0 && (
+          <p className="font-mono text-[12px] text-ink/60 lowercase mt-1">{product.notes.join(", ")}</p>
+        )}
         {product.description && <p className="mt-6 text-ink/75 leading-relaxed max-w-[46ch]">{product.description}</p>}
 
         {available && product.tabs.scent && (
@@ -78,6 +82,13 @@ export default function ProductDetail({ product }: { product: Product }) {
             </div>
             <p className="pt-5 text-sm text-ink/70 leading-relaxed max-w-[48ch]">{product.tabs[activeTab]}</p>
           </div>
+        )}
+
+        {available && product.notes && product.notes.length > 0 && (
+          <section className="mt-10 border-t border-line pt-8">
+            <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] mb-6">In three notes</h2>
+            <NotesFilm notes={product.notes} stacked />
+          </section>
         )}
 
         {available && (

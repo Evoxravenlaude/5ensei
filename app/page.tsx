@@ -5,6 +5,7 @@ import ComingSoonGlyph from "@/components/VesselArt";
 import Hero from "@/components/Hero";
 import Label from "@/components/Label";
 import ProductCard from "@/components/ProductCard";
+import NotesFilm from "@/components/NotesFilm";
 
 const featured = getFeatured();
 
@@ -39,6 +40,15 @@ export default function HomePage() {
             </div>
           </Tile>
         </div>
+      </section>
+
+      {/* The scent, in three notes: each note is a chapter of the film */}
+      <section className="mx-auto max-w-7xl px-5 sm:px-10 py-16 sm:py-24">
+        <div className="flex items-end justify-between gap-6 border-b border-line pb-4 mb-10 flex-wrap">
+          <h2 className="text-[12px] font-semibold uppercase tracking-[0.16em]">{featured.name}, in three notes</h2>
+          <p className="font-mono text-[11px] text-ink/55 lowercase">{(featured.notes || []).join(", ")}…</p>
+        </div>
+        <NotesFilm notes={featured.notes} />
       </section>
 
       {/* The collection row */}

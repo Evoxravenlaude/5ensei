@@ -58,6 +58,10 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        chapter: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
         "scroll-drip": {
           "0%": { top: "-100%" },
           "60%": { top: "100%" },
@@ -73,6 +77,7 @@ const config: Config = {
         "mark-fade": "mark-fade 1.8s ease both",
         "tag-fade": "tag-fade 1.4s ease both",
         "scroll-drip": "scroll-drip 2.2s ease-in-out infinite",
+        chapter: "chapter 7s linear both",
       },
     },
   },
