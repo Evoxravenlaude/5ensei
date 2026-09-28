@@ -29,10 +29,10 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="px-5 pt-4 pb-5">
           <div className="flex items-baseline justify-between gap-3">
-            <h3 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink">{product.name}</h3>
-            <span className="font-mono text-[12px] text-ink/70">{available ? money(product.price, product.currency) : ""}</span>
+            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-ink">{product.name}</h3>
+            <span className="font-mono text-[0.75rem] text-ink/70">{available ? money(product.price, product.currency) : ""}</span>
           </div>
-          <p className="font-mono text-[11.5px] text-ink/55 mt-1 lowercase">{available ? product.sizeLabel : "in development…"}</p>
+          <p className="font-mono text-[0.7188rem] text-ink/55 mt-1 lowercase">{available ? product.sizeLabel : "in development…"}</p>
         </div>
       </Link>
       <div className="card-actions absolute left-0 right-0 bottom-0 grid grid-cols-2 border-t border-line bg-paper">
@@ -40,16 +40,16 @@ export default function ProductCard({ product }: { product: Product }) {
           <>
             <button
               onClick={() => addItem(product.slug)}
-              className="py-3 text-[11px] font-semibold uppercase tracking-[0.14em] bg-ink text-paper hover:bg-rust transition-colors"
+              className="py-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] bg-ink text-paper hover:bg-rust transition-colors"
             >
               Add to bag
             </button>
-            <Link href={`/products/${product.slug}#label`} className="py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] hover:bg-paper-deep transition-colors">
+            <Link href={`/products/${product.slug}#label`} className="py-3 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:bg-paper-deep transition-colors">
               Personalise
             </Link>
           </>
         ) : (
-          <Link href="/contact" className="col-span-2 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] hover:bg-paper-deep transition-colors">
+          <Link href="/contact" className="col-span-2 py-3 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:bg-paper-deep transition-colors">
             Notify me
           </Link>
         )}

@@ -41,26 +41,26 @@ export default function ProductDetail({ product }: { product: Product }) {
               width={289}
               height={739}
               priority
-              className="h-[380px] sm:h-[520px] w-auto object-contain drop-shadow-[0_30px_36px_rgba(23,19,16,0.22)]"
+              className="h-[380px] sm:h-[520px] xl:h-[46rem] w-auto object-contain drop-shadow-[0_30px_36px_rgba(23,19,16,0.22)]"
             />
           ) : (
             <ComingSoonGlyph className="h-40 w-auto text-rust opacity-30" />
           )}
         </div>
-        <p className="mt-3 font-mono text-[11px] text-ink/50 lowercase">
+        <p className="mt-3 font-mono text-[0.6875rem] text-ink/50 lowercase">
           {available ? "filled and finished by hand at the ilorin atelier…" : "in development at the atelier…"}
         </p>
       </div>
 
       <div>
-        <p className="font-mono text-[11.5px] text-ink/55 lowercase mb-3">{available ? "now available…" : "in development…"}</p>
+        <p className="font-mono text-[0.7188rem] text-ink/55 lowercase mb-3">{available ? "now available…" : "in development…"}</p>
         <h1 className="font-display font-bold uppercase tracking-[0.12em] text-2xl sm:text-3xl text-ink">{product.name}</h1>
         <p className="font-mono text-sm text-ink/70 mt-2 lowercase">
           {product.sizeLabel}
           {available && <span className="ml-3 text-ink">{money(product.price, product.currency)}</span>}
         </p>
         {product.notes && product.notes.length > 0 && (
-          <p className="font-mono text-[12px] text-ink/60 lowercase mt-1">{product.notes.join(", ")}</p>
+          <p className="font-mono text-[0.75rem] text-ink/60 lowercase mt-1">{product.notes.join(", ")}</p>
         )}
         {product.description && <p className="mt-6 text-ink/75 leading-relaxed max-w-[46ch]">{product.description}</p>}
 
@@ -71,7 +71,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                 <button
                   key={t.key}
                   onClick={() => setActiveTab(t.key)}
-                  className={`text-[11px] font-semibold uppercase tracking-[0.14em] pb-3 border-b transition-colors ${
+                  className={`text-[0.6875rem] font-semibold uppercase tracking-[0.14em] pb-3 border-b transition-colors ${
                     activeTab === t.key ? "text-ink border-ink" : "text-ink/40 border-transparent hover:text-ink/70"
                   }`}
                   aria-pressed={activeTab === t.key}
@@ -86,15 +86,15 @@ export default function ProductDetail({ product }: { product: Product }) {
 
         {available && product.notes && product.notes.length > 0 && (
           <section className="mt-10 border-t border-line pt-8">
-            <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] mb-6">In three notes</h2>
+            <h2 className="text-[0.75rem] font-semibold uppercase tracking-[0.14em] mb-6">In three notes</h2>
             <NotesFilm notes={product.notes} stacked />
           </section>
         )}
 
         {available && (
           <section id="label" className="mt-10 border-t border-line pt-8 scroll-mt-24">
-            <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em]">Personalise your label</h2>
-            <p className="font-mono text-[12px] text-ink/60 lowercase mt-1 mb-6">every bottle leaves the atelier with a typed label. tell us who it is for.</p>
+            <h2 className="text-[0.75rem] font-semibold uppercase tracking-[0.14em]">Personalise your label</h2>
+            <p className="font-mono text-[0.75rem] text-ink/60 lowercase mt-1 mb-6">every bottle leaves the atelier with a typed label. tell us who it is for.</p>
             <LabelComposer product={product.name} format={product.sizeLabel.toLowerCase()} value={label} onChange={setLabel} />
           </section>
         )}
@@ -102,18 +102,18 @@ export default function ProductDetail({ product }: { product: Product }) {
         <div className="mt-10 pt-6 border-t border-line flex flex-col sm:flex-row gap-3">
           {available ? (
             <>
-              <button onClick={handleAdd} className="bg-ink hover:bg-rust transition-colors text-paper text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4">
+              <button onClick={handleAdd} className="bg-ink hover:bg-rust transition-colors text-paper text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-7 py-4">
                 {justAdded ? "Added to bag" : label.name.trim() ? `Add to bag, for ${label.name.trim()}` : "Add to bag"}
               </button>
               <a
                 href={whatsappProductLink(product.name, product.sizeLabel, label.name.trim() ? label : undefined)}
-                className="border border-ink text-ink text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4 text-center hover:bg-ink hover:text-paper transition-colors"
+                className="border border-ink text-ink text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-7 py-4 text-center hover:bg-ink hover:text-paper transition-colors"
               >
                 Order on WhatsApp
               </a>
             </>
           ) : (
-            <Link href="/contact" className="bg-ink hover:bg-rust transition-colors text-paper text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4 text-center">
+            <Link href="/contact" className="bg-ink hover:bg-rust transition-colors text-paper text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-7 py-4 text-center">
               Get notified
             </Link>
           )}

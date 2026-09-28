@@ -3,14 +3,14 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="mx-auto max-w-xl px-5 sm:px-10 py-32 text-center">
-      <p className="font-mono text-[12px] text-ink/55 lowercase mb-4">404…</p>
+      <p className="font-mono text-[0.75rem] text-ink/55 lowercase mb-4">404…</p>
       <h1 className="font-display font-bold text-3xl mb-4">Nothing&rsquo;s been bottled at this address.</h1>
       <p className="text-ink/68 mb-8">
         The page you&rsquo;re looking for doesn&rsquo;t exist &mdash; but the collection does.
       </p>
       <Link
         href="/"
-        className="inline-block bg-ink hover:bg-rust transition-colors text-paper text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4"
+        className="inline-block bg-ink hover:bg-rust transition-colors text-paper text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-7 py-4"
       >
         Back to 5ENSEI
       </Link>

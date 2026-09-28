@@ -25,7 +25,7 @@ export default function LabelComposer({
     <div className="grid gap-6 sm:grid-cols-[1fr_minmax(220px,260px)] items-start">
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="label-name" className="font-mono text-[11px] text-ink/60">
+          <label htmlFor="label-name" className="font-mono text-[0.6875rem] text-ink/60">
             for: <span className="text-ink/40">(a name, or leave it for &ldquo;you&rdquo;)</span>
           </label>
           <input
@@ -39,11 +39,11 @@ export default function LabelComposer({
               setTyped(e.target.value);
               onChange({ ...value, name: e.target.value });
             }}
-            className="bg-transparent border-b border-line py-2.5 font-mono text-[15px] text-ink focus:outline-none focus:border-rust"
+            className="bg-transparent border-b border-line py-2.5 font-mono text-[0.9375rem] text-ink focus:outline-none focus:border-rust"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="label-note" className="font-mono text-[11px] text-ink/60">
+          <label htmlFor="label-note" className="font-mono text-[0.6875rem] text-ink/60">
             a line for the label <span className="text-ink/40">(optional, 40 characters)</span>
           </label>
           <input
@@ -53,10 +53,10 @@ export default function LabelComposer({
             autoComplete="off"
             placeholder="worn since september"
             onChange={(e) => onChange({ ...value, note: e.target.value })}
-            className="bg-transparent border-b border-line py-2.5 font-mono text-[15px] text-ink focus:outline-none focus:border-rust"
+            className="bg-transparent border-b border-line py-2.5 font-mono text-[0.9375rem] text-ink focus:outline-none focus:border-rust"
           />
         </div>
-        <p className="font-mono text-[11px] text-ink/50 leading-relaxed max-w-[38ch]">
+        <p className="font-mono text-[0.6875rem] text-ink/50 leading-relaxed max-w-[38ch]">
           Typed on the label when your bottle is filled. It cannot be changed after the order is confirmed.
         </p>
       </div>

@@ -85,7 +85,7 @@ export default function Header() {
             <div key={it.label} onMouseEnter={() => (it.columns ? show(it.label) : setOpen(null))} onFocus={() => it.columns && show(it.label)}>
               <Link
                 href={it.href}
-                className={`nav-link text-[12px] font-semibold uppercase tracking-[0.14em] text-ink/85 hover:text-ink ${active(it.href) ? "on" : ""}`}
+                className={`nav-link text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-ink/85 hover:text-ink ${active(it.href) ? "on" : ""}`}
                 aria-expanded={it.columns ? open === it.label : undefined}
               >
                 {it.label}
@@ -100,7 +100,7 @@ export default function Header() {
           </button>
           <button onClick={openCart} aria-label={`Open bag, ${count} item${count === 1 ? "" : "s"}`} className="relative text-ink/80 hover:text-ink transition-colors flex items-center gap-2">
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M5 6h9l1 11.5H4L5 6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M7 6V4.5a2.5 2.5 0 015 0V6" stroke="currentColor" strokeWidth="1.5" /></svg>
-            <span className="hidden sm:inline font-mono text-[11px] text-ink/70">({count})</span>
+            <span className="hidden sm:inline font-mono text-[0.6875rem] text-ink/70">({count})</span>
           </button>
         </div>
       </div>
@@ -111,13 +111,13 @@ export default function Header() {
           <div className="mx-auto max-w-7xl px-5 sm:px-10 grid grid-cols-[repeat(3,minmax(0,1fr))_260px] gap-10 py-10">
             {it.columns!.map((col) => (
               <div key={col.title}>
-                <p className="font-mono text-[11px] text-ink/50 mb-4 lowercase">{col.title}</p>
+                <p className="font-mono text-[0.6875rem] text-ink/50 mb-4 lowercase">{col.title}</p>
                 <ul className="space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link href={l.href} className="text-[13px] font-semibold uppercase tracking-[0.1em] text-ink/85 hover:text-rust transition-colors" tabIndex={open === it.label ? 0 : -1}>
+                      <Link href={l.href} className="text-[0.8125rem] font-semibold uppercase tracking-[0.1em] text-ink/85 hover:text-rust transition-colors" tabIndex={open === it.label ? 0 : -1}>
                         {l.label}
-                        {l.soon && <span className="ml-2 font-mono text-[10px] normal-case tracking-normal text-ink/40">soon</span>}
+                        {l.soon && <span className="ml-2 font-mono text-[0.625rem] normal-case tracking-normal text-ink/40">soon</span>}
                       </Link>
                     </li>
                   ))}
@@ -126,8 +126,8 @@ export default function Header() {
             ))}
             <Link href={`/products/${featured.slug}`} className="group border border-line bg-paper-deep/60 hover:bg-paper-deep transition-colors p-6 flex flex-col items-center text-center" tabIndex={open === it.label ? 0 : -1}>
               <Image src={featured.image} alt={featured.name} width={289} height={739} className="h-36 w-auto drop-shadow-[0_12px_16px_rgba(23,19,16,0.22)] transition-transform group-hover:-translate-y-1" />
-              <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em]">{featured.name}</p>
-              <p className="font-mono text-[11px] text-ink/55 mt-1 lowercase">now available…</p>
+              <p className="mt-4 text-[0.75rem] font-semibold uppercase tracking-[0.14em]">{featured.name}</p>
+              <p className="font-mono text-[0.6875rem] text-ink/55 mt-1 lowercase">now available…</p>
             </Link>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function Header() {
               <div key={it.label} className="border-b border-line">
                 {it.columns ? (
                   <>
-                    <button className="w-full flex items-center justify-between py-4 text-[13px] font-semibold uppercase tracking-[0.14em]" onClick={() => setMobileGroup(mobileGroup === it.label ? null : it.label)} aria-expanded={mobileGroup === it.label}>
+                    <button className="w-full flex items-center justify-between py-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em]" onClick={() => setMobileGroup(mobileGroup === it.label ? null : it.label)} aria-expanded={mobileGroup === it.label}>
                       {it.label}
                       <span className="font-mono text-ink/50">{mobileGroup === it.label ? "–" : "+"}</span>
                     </button>
@@ -154,10 +154,10 @@ export default function Header() {
                       <div className="pb-4 grid gap-5">
                         {it.columns.map((col) => (
                           <div key={col.title}>
-                            <p className="font-mono text-[11px] text-ink/50 mb-2 lowercase">{col.title}</p>
+                            <p className="font-mono text-[0.6875rem] text-ink/50 mb-2 lowercase">{col.title}</p>
                             <ul className="space-y-2">
                               {col.links.map((l) => (
-                                <li key={l.label}><Link href={l.href} className="text-[13px] text-ink/85">{l.label}{l.soon && <span className="ml-2 font-mono text-[10px] text-ink/40">soon</span>}</Link></li>
+                                <li key={l.label}><Link href={l.href} className="text-[0.8125rem] text-ink/85">{l.label}{l.soon && <span className="ml-2 font-mono text-[0.625rem] text-ink/40">soon</span>}</Link></li>
                               ))}
                             </ul>
                           </div>
@@ -166,12 +166,12 @@ export default function Header() {
                     )}
                   </>
                 ) : (
-                  <Link href={it.href} className="block py-4 text-[13px] font-semibold uppercase tracking-[0.14em]">{it.label}</Link>
+                  <Link href={it.href} className="block py-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em]">{it.label}</Link>
                 )}
               </div>
             ))}
           </nav>
-          <div className="px-5 py-5 border-t border-line font-mono text-[11px] text-ink/55 lowercase">presence before introduction…</div>
+          <div className="px-5 py-5 border-t border-line font-mono text-[0.6875rem] text-ink/55 lowercase">presence before introduction…</div>
         </aside>
       </div>
 

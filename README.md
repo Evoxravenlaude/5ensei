@@ -37,6 +37,10 @@ Products have one new optional field, `notes` (a list, editable in the admin pan
 ### The film
 `public/soren-film.mp4` (720px, with sound, 4.3 MB) and `soren-film-480.mp4` (muted, 1.8 MB, served to phones and low-power devices). Both have the CapCut mark cropped off. Chapter times live in `lib/film.ts`; videos load and play only while on screen and stop under reduced motion.
 
+## Wide screens
+
+The root font size is fluid (`globals.css`: 16px on laptops, ~19px at 1920, 21px on wide monitors) and every text size is in rem, so type and spacing grow with the screen. The site column (`max-w-7xl`, redefined in `tailwind.config.ts`) runs 1280px on laptops up to 1720px on wide monitors. From 1280px up, the hero gains a third column: the label, the three notes, price, and Add to bag.
+
 ## Structure
 
 - `app/` — pages (App Router)

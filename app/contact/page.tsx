@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-16 pb-11">
-        <p className="font-mono text-[12px] text-ink/55 lowercase mb-3">get in touch…</p>
+        <p className="font-mono text-[0.75rem] text-ink/55 lowercase mb-3">get in touch…</p>
         <h1 className="font-display font-bold text-3xl sm:text-4xl">Book a visit</h1>
         <p className="mt-4 text-ink/68 max-w-[52ch]">
           The atelier works by appointment. Tell us a little about what you&rsquo;re looking for and
@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-16">
           <div className="border-t border-line">
             <div className="py-7 border-b border-line">
-              <h3 className="text-[17px] font-bold mb-2">Atelier</h3>
+              <h3 className="text-[1.0625rem] font-bold mb-2">Atelier</h3>
               <p className="text-ink/68 text-sm">
                 Ilorin, Kwara, Nigeria
                 <br />
@@ -29,7 +29,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="py-7 border-b border-line">
-              <h3 className="text-[17px] font-bold mb-2">Enquiries</h3>
+              <h3 className="text-[1.0625rem] font-bold mb-2">Enquiries</h3>
               <p className="text-ink/68 text-sm">
                 senseiibrand@gmail.com
                 <br />
@@ -37,7 +37,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="py-7 border-b border-line">
-              <h3 className="text-[17px] font-bold mb-2">Elsewhere</h3>
+              <h3 className="text-[1.0625rem] font-bold mb-2">Elsewhere</h3>
               <p className="text-ink/68 text-sm">
                 Find us on Instagram, TikTok, and WhatsApp &mdash; links in the footer below.
               </p>

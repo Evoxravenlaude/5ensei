@@ -45,7 +45,7 @@ export default function NotesFilm({ notes, stacked = false }: { notes?: string[]
 
   return (
     <div className={`grid ${stacked ? "" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"} gap-10 lg:gap-16 items-center`}>
-      <div className="relative aspect-[720/1180] max-h-[70svh] w-full max-w-[420px] mx-auto md:mx-0 overflow-hidden bg-[#0f0c0a]">
+      <div className="relative aspect-[720/1180] max-h-[70svh] w-full max-w-[420px] xl:max-w-[560px] mx-auto md:mx-0 overflow-hidden bg-[#0f0c0a]">
         <video ref={video} muted playsInline preload="metadata" poster="/soren-film-cream.jpg" onTimeUpdate={onTime} className="absolute inset-0 h-full w-full object-cover" aria-label="The three notes of Soren" />
       </div>
       <ol className="border-t border-line">
@@ -53,10 +53,10 @@ export default function NotesFilm({ notes, stacked = false }: { notes?: string[]
           <li key={c.key} className="border-b border-line">
             <button onClick={() => pick(i)} className="w-full text-left py-6 group" aria-current={i === active ? "true" : undefined}>
               <div className="flex items-baseline justify-between gap-4">
-                <span className={`text-[13px] font-semibold uppercase tracking-[0.16em] transition-colors ${i === active ? "text-ink" : "text-ink/40 group-hover:text-ink/70"}`}>{notes?.[i] ?? c.label}</span>
-                <span className="font-mono text-[11px] text-ink/40 lowercase">{i === 0 ? "opening" : i === 1 ? "heart" : "base"}</span>
+                <span className={`text-[0.8125rem] font-semibold uppercase tracking-[0.16em] transition-colors ${i === active ? "text-ink" : "text-ink/40 group-hover:text-ink/70"}`}>{notes?.[i] ?? c.label}</span>
+                <span className="font-mono text-[0.6875rem] text-ink/40 lowercase">{i === 0 ? "opening" : i === 1 ? "heart" : "base"}</span>
               </div>
-              <p className={`font-mono text-[14px] lowercase leading-relaxed mt-2 max-w-[44ch] transition-all duration-500 overflow-hidden ${i === active ? "max-h-24 opacity-100" : "max-h-0 opacity-0"}`}>{c.line}</p>
+              <p className={`font-mono text-[0.875rem] lowercase leading-relaxed mt-2 max-w-[44ch] transition-all duration-500 overflow-hidden ${i === active ? "max-h-24 opacity-100" : "max-h-0 opacity-0"}`}>{c.line}</p>
               <span className="block h-px bg-ink/10 mt-4 overflow-hidden"><span className="block h-full bg-ink origin-left" style={{ transform: `scaleX(${i === active ? progress : 0})` }} /></span>
             </button>
           </li>

@@ -7,6 +7,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        // the site column: 1280 on laptops, up to 1720 on wide monitors
+        "7xl": "min(1720px, 92vw)",
+      },
       colors: {
         ink: "#171310",
         paper: "#FBF8F1",

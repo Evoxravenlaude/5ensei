@@ -43,14 +43,14 @@ export default function SearchOverlay({ open, onClose }: { open: boolean; onClos
               aria-label="Search"
               className="flex-1 bg-transparent font-mono text-lg sm:text-2xl lowercase placeholder:text-ink/35 focus:outline-none"
             />
-            <button onClick={onClose} aria-label="Close search" className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60 hover:text-ink">close</button>
+            <button onClick={onClose} aria-label="Close search" className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-ink/60 hover:text-ink">close</button>
           </div>
 
           {!q.trim() ? (
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <span className="font-mono text-[11px] text-ink/50 lowercase">popular:</span>
+              <span className="font-mono text-[0.6875rem] text-ink/50 lowercase">popular:</span>
               {POPULAR.map((p) => (
-                <button key={p} onClick={() => setQ(p)} className="font-mono text-[13px] lowercase border-b border-transparent hover:border-ink">{p}</button>
+                <button key={p} onClick={() => setQ(p)} className="font-mono text-[0.8125rem] lowercase border-b border-transparent hover:border-ink">{p}</button>
               ))}
             </div>
           ) : empty ? (
@@ -65,8 +65,8 @@ export default function SearchOverlay({ open, onClose }: { open: boolean; onClos
                         <div className="h-28 flex items-center justify-center">
                           {p.status === "available" ? <Image src={p.image} alt={p.name} width={289} height={739} className="h-full w-auto" /> : <ComingSoonGlyph className="h-12 w-auto text-rust opacity-40" />}
                         </div>
-                        <p className="mt-3 text-[12px] font-semibold uppercase tracking-[0.12em]">{p.name}</p>
-                        <p className="font-mono text-[11px] text-ink/55 lowercase">{p.status === "available" ? money(p.price, p.currency) : "in development…"}</p>
+                        <p className="mt-3 text-[0.75rem] font-semibold uppercase tracking-[0.12em]">{p.name}</p>
+                        <p className="font-mono text-[0.6875rem] text-ink/55 lowercase">{p.status === "available" ? money(p.price, p.currency) : "in development…"}</p>
                       </Link>
                     </li>
                   ))}
@@ -77,8 +77,8 @@ export default function SearchOverlay({ open, onClose }: { open: boolean; onClos
                   {results.pages.map((p) => (
                     <li key={p.href}>
                       <Link href={p.href} className="block py-3 hover:pl-1 transition-all">
-                        <span className="text-[12px] font-semibold uppercase tracking-[0.12em]">{p.label}</span>
-                        <span className="block font-mono text-[11px] text-ink/55 lowercase">{p.text}</span>
+                        <span className="text-[0.75rem] font-semibold uppercase tracking-[0.12em]">{p.label}</span>
+                        <span className="block font-mono text-[0.6875rem] text-ink/55 lowercase">{p.text}</span>
                       </Link>
                     </li>
                   ))}

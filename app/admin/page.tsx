@@ -170,17 +170,17 @@ export default function AdminPage() {
       <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-8">
         <div className="w-full max-w-sm border border-line bg-paper p-10">
           <h1 className="font-display font-bold italic text-3xl mb-2">Admin</h1>
-          <p className="font-mono text-[13px] text-ink/60 mb-7">
+          <p className="font-mono text-[0.8125rem] text-ink/60 mb-7">
             Sign in to manage the 5ENSEI collection.
           </p>
           {loginError && (
-            <div className="font-mono text-[13px] text-[#8a2c1e] bg-rust/10 border border-rust/30 px-3.5 py-2.5 mb-4">
+            <div className="font-mono text-[0.8125rem] text-[#8a2c1e] bg-rust/10 border border-rust/30 px-3.5 py-2.5 mb-4">
               {loginError}
             </div>
           )}
           <form onSubmit={handleLogin} className="flex flex-col gap-5">
             <div className="flex flex-col gap-1.5">
-              <label className="font-mono text-[11px] text-ink/58" htmlFor="u">
+              <label className="font-mono text-[0.6875rem] text-ink/58" htmlFor="u">
                 Username
               </label>
               <input
@@ -188,11 +188,11 @@ export default function AdminPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="bg-transparent border-b border-line py-2 text-[15px] focus:outline-none focus:border-rust"
+                className="bg-transparent border-b border-line py-2 text-[0.9375rem] focus:outline-none focus:border-rust"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-mono text-[11px] text-ink/58" htmlFor="p">
+              <label className="font-mono text-[0.6875rem] text-ink/58" htmlFor="p">
                 Password
               </label>
               <input
@@ -201,7 +201,7 @@ export default function AdminPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="bg-transparent border-b border-line py-2 text-[15px] focus:outline-none focus:border-rust"
+                className="bg-transparent border-b border-line py-2 text-[0.9375rem] focus:outline-none focus:border-rust"
               />
             </div>
             <button
@@ -260,7 +260,7 @@ export default function AdminPage() {
               </div>
             </div>
             <span
-              className={`font-mono text-[11px] uppercase tracking-wide px-2.5 py-1 border ${
+              className={`font-mono text-[0.6875rem] uppercase tracking-wide px-2.5 py-1 border ${
                 p.status === "available" ? "text-rust border-rust" : "text-ink/55 border-line"
               }`}
             >
@@ -321,13 +321,13 @@ export default function AdminPage() {
             />
 
             <div className="flex flex-col gap-1.5 mb-5">
-              <label className="font-mono text-[11px] text-ink/58">Status</label>
+              <label className="font-mono text-[0.6875rem] text-ink/58">Status</label>
               <select
                 value={editing.status}
                 onChange={(e) =>
                   setEditing({ ...editing, status: e.target.value as Product["status"] })
                 }
-                className="bg-transparent border-b border-line py-2 text-[15px] focus:outline-none focus:border-rust"
+                className="bg-transparent border-b border-line py-2 text-[0.9375rem] focus:outline-none focus:border-rust"
               >
                 <option value="available">Available now</option>
                 <option value="coming-soon">Coming soon</option>
@@ -403,7 +403,7 @@ export default function AdminPage() {
 
       {toast && (
         <div
-          className={`fixed bottom-7 left-1/2 -translate-x-1/2 text-paper font-mono text-[13.5px] px-6 py-3.5 border z-[80] ${
+          className={`fixed bottom-7 left-1/2 -translate-x-1/2 text-paper font-mono text-[0.8438rem] px-6 py-3.5 border z-[80] ${
             toast.error ? "bg-[#3a1610] border-[#8a2c1e]" : "bg-ink border-rust-deep"
           }`}
         >
@@ -425,11 +425,11 @@ function FieldText({
 }) {
   return (
     <div className="flex flex-col gap-1.5 mb-5">
-      <label className="font-mono text-[11px] text-ink/58">{label}</label>
+      <label className="font-mono text-[0.6875rem] text-ink/58">{label}</label>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent border-b border-line py-2 text-[15px] focus:outline-none focus:border-rust"
+        className="bg-transparent border-b border-line py-2 text-[0.9375rem] focus:outline-none focus:border-rust"
       />
     </div>
   );
@@ -446,12 +446,12 @@ function FieldArea({
 }) {
   return (
     <div className="flex flex-col gap-1.5 mb-5">
-      <label className="font-mono text-[11px] text-ink/58">{label}</label>
+      <label className="font-mono text-[0.6875rem] text-ink/58">{label}</label>
       <textarea
         rows={3}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent border-b border-line py-2 text-[15px] focus:outline-none focus:border-rust resize-y"
+        className="bg-transparent border-b border-line py-2 text-[0.9375rem] focus:outline-none focus:border-rust resize-y"
       />
     </div>
   );

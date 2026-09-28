@@ -27,7 +27,7 @@ export default function PhilosophyPage() {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-16 pb-11">
-        <p className="font-mono text-[12px] text-ink/55 lowercase mb-3">our thinking…</p>
+        <p className="font-mono text-[0.75rem] text-ink/55 lowercase mb-3">our thinking…</p>
         <h1 className="font-display font-bold text-3xl sm:text-4xl">
           Presence before introduction.
         </h1>
@@ -39,7 +39,7 @@ export default function PhilosophyPage() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-10 pb-4">
         <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-16">
-          <h2 className="font-display font-bold text-[26px]">Why we started here</h2>
+          <h2 className="font-display font-bold text-[1.625rem]">Why we started here</h2>
           <div className="space-y-4 text-ink/78">
             <p>
               Most fragrance is built to be described &mdash; top notes, dry-down, sillage, a story
@@ -89,7 +89,7 @@ export default function PhilosophyPage() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-10 py-20">
         <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-16">
-          <h2 className="font-display font-bold text-[26px]">Made in Kwara</h2>
+          <h2 className="font-display font-bold text-[1.625rem]">Made in Kwara</h2>
           <div className="space-y-4 text-ink/78">
             <p>
               Every fragrance is compounded and bottled in our Ilorin atelier, in small batches. We
@@ -102,7 +102,7 @@ export default function PhilosophyPage() {
             </p>
             <Link
               href="/collection"
-              className="inline-block mt-3 border border-ink text-ink text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4 hover:bg-ink hover:text-paper transition-colors"
+              className="inline-block mt-3 border border-ink text-ink text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-7 py-4 hover:bg-ink hover:text-paper transition-colors"
             >
               See the collection
             </Link>

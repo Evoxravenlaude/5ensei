@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Product, money } from "@/lib/products";
 import { FILM, isLite } from "@/lib/film";
+import { useCart } from "@/lib/cart-context";
+import Label from "./Label";
 
 /**
  * The film is the hero, the way Le Labo opens on a full-bleed video. It is portrait, so on wide screens
@@ -16,6 +18,7 @@ export default function Hero({ product }: { product: Product }) {
   const [sound, setSound] = useState(false);
   const [canSound, setCanSound] = useState(false);
   const [ready, setReady] = useState(false);
+  const { addItem } = useCart();
 
   useEffect(() => {
     const v = video.current;
@@ -45,30 +48,30 @@ export default function Hero({ product }: { product: Product }) {
       className="relative overflow-hidden text-ink"
       style={{ background: "radial-gradient(ellipse 70% 60% at 62% 50%, #EFCDB9 0%, #F6E6DA 45%, #FBF8F1 100%)" }}
     >
-      <div className="mx-auto max-w-7xl px-0 sm:px-10 grid md:grid-cols-[minmax(0,1fr)_minmax(340px,44%)] items-stretch min-h-[86svh]">
+      <div className="mx-auto max-w-7xl px-0 sm:px-10 grid md:grid-cols-[minmax(0,1fr)_minmax(340px,44%)] xl:grid-cols-[minmax(0,1fr)_minmax(420px,34%)_minmax(0,1fr)] xl:gap-x-12 items-stretch min-h-[86svh]">
         {/* caption */}
         <div className="order-2 md:order-1 px-5 sm:px-0 py-8 md:py-16 flex flex-col justify-end gap-6">
           <div>
-            <h1 className="font-display font-bold uppercase tracking-[0.18em] text-sm sm:text-base">{product.name}</h1>
-            <p className="font-mono text-[15px] sm:text-[17px] lowercase text-ink/85 mt-2 min-h-[1.6em]" aria-live="polite">
+            <h1 className="font-display font-bold uppercase tracking-[0.18em] text-sm sm:text-base xl:text-lg">{product.name}</h1>
+            <p className="font-mono text-[0.9375rem] sm:text-[1.0625rem] xl:text-[1.25rem] lowercase text-ink/85 mt-2 min-h-[1.6em] max-w-[40ch]" aria-live="polite">
               {FILM.chapters[chapter].line}
             </p>
           </div>
           {/* the four chapters as a small timeline; the current one fills as the film plays */}
           <ol className="flex gap-2" aria-label="Chapters">
             {FILM.chapters.map((c, i) => (
-              <li key={c.key} className="flex-1 max-w-[110px]">
+              <li key={c.key} className="flex-1 max-w-[8rem]">
                 <button onClick={() => seek(i)} className="w-full text-left group" aria-current={i === chapter ? "step" : undefined}>
                   <span className="block h-px bg-ink/20 overflow-hidden"><span className={`block h-full bg-ink transition-transform origin-left ${i < chapter ? "scale-x-100" : i === chapter ? "animate-chapter" : "scale-x-0"}`} style={i === chapter ? { animationDuration: `${c.end - c.start}s` } : undefined} /></span>
-                  <span className={`block mt-2 font-mono text-[10.5px] lowercase transition-colors ${i === chapter ? "text-ink" : "text-ink/45 group-hover:text-ink/70"}`}>{c.label}</span>
+                  <span className={`block mt-2 font-mono text-[0.6562rem] lowercase transition-colors ${i === chapter ? "text-ink" : "text-ink/45 group-hover:text-ink/70"}`}>{c.label}</span>
                 </button>
               </li>
             ))}
           </ol>
           <div className="flex items-center gap-6 flex-wrap">
-            <Link href={`/products/${product.slug}`} className="font-mono text-[11px] uppercase tracking-[0.2em] border-b border-ink/60 pb-1 hover:border-ink">Discover</Link>
-            <Link href={`/products/${product.slug}#label`} className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/55 hover:text-ink pb-1">Personalise</Link>
-            <span className="font-mono text-[11px] text-ink/50 lowercase ml-auto">{product.sizeLabel.toLowerCase()}, {money(product.price, product.currency)}</span>
+            <Link href={`/products/${product.slug}`} className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] border-b border-ink/60 pb-1 hover:border-ink">Discover</Link>
+            <Link href={`/products/${product.slug}#label`} className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-ink/55 hover:text-ink pb-1">Personalise</Link>
+            <span className="font-mono text-[0.6875rem] text-ink/50 lowercase ml-auto">{product.sizeLabel.toLowerCase()}, {money(product.price, product.currency)}</span>
           </div>
         </div>
 
@@ -89,12 +92,34 @@ export default function Hero({ product }: { product: Product }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
             {canSound && (
-              <button onClick={toggleSound} className="absolute right-4 bottom-4 h-10 px-4 bg-paper/85 hover:bg-paper text-ink font-mono text-[11px] lowercase transition-colors" aria-pressed={sound}>
+              <button onClick={toggleSound} className="absolute right-4 bottom-4 h-10 px-4 bg-paper/85 hover:bg-paper text-ink font-mono text-[0.6875rem] lowercase transition-colors" aria-pressed={sound}>
                 {sound ? "sound on" : "sound"}
               </button>
             )}
           </div>
         </div>
+
+        {/* wide screens only: the lab card, so the extra width carries the order rather than empty stage */}
+        <aside className="hidden xl:flex order-3 flex-col justify-end py-16 gap-8" aria-label={`${product.name}, order`}>
+          <Label name="you" className="w-[13.5rem]" />
+          <div>
+            {product.notes && product.notes.length > 0 && (
+              <ol className="border-t border-line">
+                {product.notes.map((n, i) => (
+                  <li key={n} className="flex justify-between gap-4 py-2.5 border-b border-line">
+                    <span className="text-[0.8rem] font-semibold uppercase tracking-[0.14em]">{n}</span>
+                    <span className="font-mono text-[0.7rem] text-ink/45 lowercase">{i === 0 ? "opening" : i === 1 ? "heart" : "base"}</span>
+                  </li>
+                ))}
+              </ol>
+            )}
+            <p className="font-mono text-[0.75rem] text-ink/60 lowercase mt-4">{product.sizeLabel.toLowerCase()}, {money(product.price, product.currency)}. filled by hand in ilorin…</p>
+            <div className="mt-5 flex gap-3">
+              <button onClick={() => addItem(product.slug)} className="bg-ink hover:bg-rust transition-colors text-paper text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-6 py-3.5">Add to bag</button>
+              <Link href={`/products/${product.slug}#label`} className="border border-ink text-ink text-[0.75rem] font-semibold uppercase tracking-[0.14em] px-6 py-3.5 hover:bg-ink hover:text-paper transition-colors">Personalise</Link>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
   );
