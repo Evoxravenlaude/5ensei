@@ -9,10 +9,8 @@ export default function ContactPage() {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-16 pb-11">
-        <p className="font-mono font-bold text-[11.5px] uppercase tracking-widest2 text-rust mb-3">
-          Get in touch
-        </p>
-        <h1 className="font-display font-bold text-4xl sm:text-5xl">Book a visit</h1>
+        <p className="font-mono text-[12px] text-ink/55 lowercase mb-3">get in touch…</p>
+        <h1 className="font-display font-bold text-3xl sm:text-4xl">Book a visit</h1>
         <p className="mt-4 text-ink/68 max-w-[52ch]">
           The atelier works by appointment. Tell us a little about what you&rsquo;re looking for and
           we&rsquo;ll follow up directly.

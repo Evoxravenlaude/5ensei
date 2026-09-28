@@ -42,13 +42,13 @@ export default function Loader() {
       finished = true;
       setLifting(true);
       document.body.classList.remove("loading");
-      window.setTimeout(() => setShouldRender(false), 1100);
+      window.setTimeout(() => setShouldRender(false), 900);
     };
 
-    const primary = window.setTimeout(finish, 2600);
+    const primary = window.setTimeout(finish, 1900);
     // Hard safety net: never let the loader sit on screen longer than this,
     // no matter what else does or doesn't run.
-    const safety = window.setTimeout(finish, 5000);
+    const safety = window.setTimeout(finish, 4000);
 
     return () => {
       window.clearTimeout(primary);
@@ -61,7 +61,7 @@ export default function Loader() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[100] bg-ink flex items-center justify-center transition-opacity duration-1000 ${
+      className={`fixed inset-0 z-[100] bg-ink flex items-center justify-center transition-opacity duration-700 ${
         lifting ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       style={{ visibility: !visible ? "hidden" : undefined }}
@@ -78,10 +78,10 @@ export default function Loader() {
               "brightness(0) saturate(100%) invert(90%) sepia(12%) saturate(500%) hue-rotate(340deg) brightness(101%)",
           }}
         />
-        <span className="text-center text-brass-soft font-mono font-bold text-[11px] tracking-[0.26em] uppercase animate-tag-fade [animation-delay:1.1s]">
-          Presence before introduction
-          <span className="block mt-2 font-sans italic text-[12.5px] tracking-normal normal-case text-paper/50">
-            A Nigerian fragrance house
+        <span className="text-center text-brass-soft font-mono font-bold text-[11px] tracking-[0.2em] lowercase animate-tag-fade [animation-delay:1.1s]">
+          presence before introduction
+          <span className="block mt-2 font-mono text-[11px] tracking-normal lowercase text-paper/50 font-normal">
+            a nigerian fragrance house, ilorin
           </span>
         </span>
       </div>

@@ -7,7 +7,7 @@ export default function ContactForm() {
         <Field label="Name" id="name" type="text" />
         <Field label="Email" id="email" type="email" />
         <div className="sm:col-span-2 flex flex-col gap-1.5">
-          <label htmlFor="reason" className="font-mono text-[11px] text-ink/58">
+          <label htmlFor="reason" className="font-mono text-[11px] text-ink/58 lowercase">
             What brings you in
           </label>
           <select
@@ -21,7 +21,7 @@ export default function ContactForm() {
           </select>
         </div>
         <div className="sm:col-span-2 flex flex-col gap-1.5">
-          <label htmlFor="message" className="font-mono text-[11px] text-ink/58">
+          <label htmlFor="message" className="font-mono text-[11px] text-ink/58 lowercase">
             Message
           </label>
           <textarea
@@ -33,7 +33,7 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="self-start bg-ink hover:bg-rust transition-colors text-paper text-xs font-bold uppercase tracking-wide px-7 py-3.5 mt-2"
+        className="self-start bg-ink hover:bg-rust transition-colors text-paper text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4 mt-2"
       >
         Send enquiry
       </button>
@@ -44,7 +44,7 @@ export default function ContactForm() {
 function Field({ label, id, type }: { label: string; id: string; type: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="font-mono text-[11px] text-ink/58">
+      <label htmlFor={id} className="font-mono text-[11px] text-ink/58 lowercase">
         {label}
       </label>
       <input

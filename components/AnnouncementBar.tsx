@@ -1,27 +1,13 @@
-import Image from "next/image";
+import Link from "next/link";
 
+/** One quiet line, like the notices above Le Labo's nav. */
 export default function AnnouncementBar() {
-  const items = Array(6).fill("Presence before introduction");
-
   return (
-    <div className="bg-rust text-paper overflow-hidden whitespace-nowrap relative flex items-center gap-3.5 pl-4">
-      <Image
-        src="/logo-mark.png"
-        alt=""
-        width={40}
-        height={70}
-        className="h-[13px] w-auto shrink-0 brightness-0 invert opacity-90 animate-floaty-sm"
-      />
-      <div className="inline-flex animate-marquee py-2">
-        {items.concat(items).map((text, i) => (
-          <span
-            key={i}
-            className="font-mono font-bold text-[11.5px] tracking-[0.2em] px-11 text-paper/90"
-          >
-            {text}
-          </span>
-        ))}
-      </div>
+    <div className="bg-rust text-paper">
+      <p className="mx-auto max-w-7xl px-5 sm:px-10 py-2 font-mono text-[11px] lowercase text-center sm:text-left">
+        soren is now available in 50 ml. filled by hand in ilorin, delivered across nigeria.{" "}
+        <Link href="/products/soren" className="underline underline-offset-4 hover:text-paper/80">view more</Link>
+      </p>
     </div>
   );
 }

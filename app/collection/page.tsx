@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 
@@ -7,47 +8,32 @@ export const metadata = {
 };
 
 export default function CollectionPage() {
+  const available = products.filter((p) => p.status === "available").length;
   return (
     <div>
-      <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-16 pb-11">
-        <p className="font-mono font-bold text-[11.5px] uppercase tracking-widest2 text-rust mb-3">
-          Full range
-        </p>
-        <h1 className="font-display font-bold text-4xl sm:text-5xl">The collection</h1>
-        <p className="mt-4 text-ink/68 max-w-[52ch]">
-          We build slowly, one fragrance at a time. Soren opens the collection now, with more in
-          development at the atelier.
-        </p>
+      <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-12 sm:pt-16 pb-8 flex items-end justify-between gap-6 flex-wrap border-b border-line">
+        <div>
+          <h1 className="font-display font-bold text-3xl sm:text-4xl">The collection</h1>
+          <p className="font-mono text-[12px] text-ink/55 lowercase mt-2">{available} available, {products.length - available} in development…</p>
+        </div>
+        <p className="text-ink/65 text-sm max-w-[40ch]">We build slowly, one fragrance at a time. Soren opens the collection; the rest is in development at the atelier.</p>
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-10 pb-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mx-auto max-w-7xl px-5 sm:px-10 py-10 sm:py-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {products.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
-        <p className="font-mono text-xs text-ink/55 mt-6">
-          Soren is a 50ml extrait de parfum, available now. Further releases are in development at
-          the atelier.
-        </p>
       </div>
 
-      <section className="bg-ink text-paper border-t border-b border-rust-deep py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-10">
-          <div className="w-11 h-px bg-brass-soft mb-6" />
-          <h2 className="font-display italic font-bold text-3xl sm:text-4xl">
-            Not sure where to start?
-          </h2>
-          <p className="text-paper/78 max-w-[50ch] mt-4">
-            Book a fitting at the atelier &mdash; we build a shortlist around how you already dress,
-            not the other way around.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block mt-7 border border-paper text-paper hover:bg-paper hover:text-ink transition-colors text-xs font-bold uppercase tracking-wide px-7 py-3.5"
-          >
-            Book a fitting
-          </a>
+      <section className="border-t border-line">
+        <div className="mx-auto max-w-7xl px-5 sm:px-10 py-16 grid md:grid-cols-[1fr_auto] gap-8 items-end">
+          <div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl max-w-[20ch]">Not sure where to start?</h2>
+            <p className="text-ink/70 max-w-[50ch] mt-3">Book a fitting at the atelier. We build a shortlist around how you already dress, not the other way around.</p>
+          </div>
+          <Link href="/contact" className="bg-ink hover:bg-rust transition-colors text-paper text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4">Book a fitting</Link>
         </div>
       </section>
     </div>

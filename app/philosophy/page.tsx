@@ -27,11 +27,9 @@ export default function PhilosophyPage() {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-5 sm:px-10 pt-16 pb-11">
-        <p className="font-mono font-bold text-[11.5px] uppercase tracking-widest2 text-rust mb-3">
-          Our thinking
-        </p>
-        <h1 className="font-display font-bold text-4xl sm:text-5xl">
-          Presence before <em className="italic text-rust">introduction</em>.
+        <p className="font-mono text-[12px] text-ink/55 lowercase mb-3">our thinking…</p>
+        <h1 className="font-display font-bold text-3xl sm:text-4xl">
+          Presence before introduction.
         </h1>
         <p className="mt-4 text-ink/68 max-w-[52ch]">
           The phrase is on every bottle we make, so it should mean something specific. Here is what
@@ -57,11 +55,11 @@ export default function PhilosophyPage() {
         </div>
       </div>
 
-      <section className="bg-ink text-paper border-t border-b border-rust-deep py-20 my-20">
+      <section className="bg-ink text-paper py-20 my-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-10">
           <div className="w-11 h-px bg-brass-soft mb-6" />
-          <h2 className="font-display italic font-bold text-3xl sm:text-4xl">
-            Old money doesn&rsquo;t ask to be noticed. It simply is.
+          <h2 className="font-display font-bold text-2xl sm:text-3xl max-w-[22ch]">
+            You will notice it before you notice who is wearing it.
           </h2>
         </div>
       </section>
@@ -77,11 +75,11 @@ export default function PhilosophyPage() {
           {PRINCIPLES.map((p) => (
             <div
               key={p.mark}
-              className="grid grid-cols-[70px_1fr] sm:grid-cols-[90px_1fr] gap-7 py-8 border-b border-line hover:pl-2 hover:bg-brass/5 transition-all"
+              className="grid grid-cols-[70px_1fr] sm:grid-cols-[90px_1fr] gap-7 py-8 border-b border-line "
             >
-              <div className="font-mono font-bold text-rust text-sm">{p.mark}</div>
+              <div className="font-mono text-ink/50 text-sm">{p.mark}</div>
               <div>
-                <h3 className="font-display italic font-bold text-xl mb-2">{p.title}</h3>
+                <h3 className="font-display font-bold text-xl mb-2">{p.title}</h3>
                 <p className="text-ink/66 text-sm max-w-[52ch]">{p.body}</p>
               </div>
             </div>
@@ -104,7 +102,7 @@ export default function PhilosophyPage() {
             </p>
             <Link
               href="/collection"
-              className="inline-block mt-3 border border-ink text-ink text-xs font-bold uppercase tracking-wide px-7 py-3.5 hover:bg-ink hover:text-paper transition-colors"
+              className="inline-block mt-3 border border-ink text-ink text-[12px] font-semibold uppercase tracking-[0.14em] px-7 py-4 hover:bg-ink hover:text-paper transition-colors"
             >
               See the collection
             </Link>
