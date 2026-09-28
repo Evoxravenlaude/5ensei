@@ -5,14 +5,19 @@
     "status": "available",
     "sizeLabel": "50ml Extrait de Parfum",
     "price": 80000,
-    "currency": "\u20a6",
+    "currency": "₦",
     "image": "/soren-bottle.png",
     "description": "A delicate fusion of creamy warmth and toasted sweetness. Soren unfolds with effortless elegance, leaving a soft, addictive trail that lingers long after you've left.",
     "tabs": {
-      "scent": "Creamy, warm, and softly sweet \u2014 Soren is built around a single unmistakable accord rather than a long list of competing notes. It is designed to be worn close, noticed slowly, and remembered anyway.",
-      "bottle": "Each 50ml bottle is filled and finished by hand at our Ilorin atelier, in small batches. No two production runs are rushed to meet a calendar \u2014 we bottle when the batch is ready.",
-      "delivery": "Reach us on WhatsApp or email to place an order \u2014 we'll confirm availability and arrange delivery or a pickup at the atelier directly with you."
-    }
+      "scent": "Soft cream, marshmallow and musk. Creamy, warm, and softly sweet — Soren is built around a single unmistakable accord rather than a long list of competing notes. It is designed to be worn close, noticed slowly, and remembered anyway.",
+      "bottle": "Each 50ml bottle is filled and finished by hand at our Ilorin atelier, in small batches. No two production runs are rushed to meet a calendar — we bottle when the batch is ready.",
+      "delivery": "Reach us on WhatsApp or email to place an order — we'll confirm availability and arrange delivery or a pickup at the atelier directly with you."
+    },
+    "notes": [
+      "soft cream",
+      "marshmallow",
+      "musk"
+    ]
   },
   {
     "slug": "next-1",
@@ -20,10 +25,14 @@
     "status": "coming-soon",
     "sizeLabel": "In development at the atelier",
     "price": null,
-    "currency": "\u20a6",
+    "currency": "₦",
     "image": "",
     "description": "",
-    "tabs": { "scent": "", "bottle": "", "delivery": "" }
+    "tabs": {
+      "scent": "",
+      "bottle": "",
+      "delivery": ""
+    }
   },
   {
     "slug": "next-2",
@@ -31,9 +40,13 @@
     "status": "coming-soon",
     "sizeLabel": "In development at the atelier",
     "price": null,
-    "currency": "\u20a6",
+    "currency": "₦",
     "image": "",
     "description": "",
-    "tabs": { "scent": "", "bottle": "", "delivery": "" }
+    "tabs": {
+      "scent": "",
+      "bottle": "",
+      "delivery": ""
+    }
   }
 ]

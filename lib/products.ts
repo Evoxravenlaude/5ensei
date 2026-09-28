@@ -18,6 +18,7 @@ export interface Product {
   image: string; // path under /public, e.g. "/soren-bottle.png"
   description: string;
   tabs: ProductTabs;
+  notes?: string[]; // e.g. ["soft cream", "marshmallow", "musk"]; optional, shown when present
 }
 
 // data/products.json is the single source of truth — both this site and the
